@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import rootState from "recoilState";
+import { useRecoilState } from "recoil";
 import {
   Pinterest,
   Search,
@@ -11,24 +13,29 @@ import {
   KeyboardArrowDown,
 } from "@material-ui/icons";
 
-export type ParamsType = {
+export type ImageParamsType = {
   query: string;
   per_page: string;
+  page?: string;
 };
 type HeaderPropsType = {
-  onSearchSubmit: (params: ParamsType) => void;
+  onSearchSubmit: (params: ImageParamsType) => void;
 };
 function Header({ onSearchSubmit }: HeaderPropsType) {
-  const [inputValue, setInputValue] = useState("");
+  const [searchWord, setSearchWord] = useRecoilState(
+    rootState.mainBoard.searchWord
+  );
 
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(inputValue);
-      const params: ParamsType = { query: inputValue, per_page: "30" };
+      const params: ImageParamsType = {
+        query: searchWord,
+        per_page: "10",
+      };
       onSearchSubmit(params);
     },
-    [inputValue]
+    [onSearchSubmit, searchWord]
   );
 
   return (
@@ -54,7 +61,7 @@ function Header({ onSearchSubmit }: HeaderPropsType) {
             <form>
               <input
                 type="text"
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={(e) => setSearchWord(e.target.value)}
               />
               <button type="submit" onClick={(e) => onSubmit(e)}></button>
             </form>
