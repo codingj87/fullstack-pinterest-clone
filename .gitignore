@@ -200,3 +200,5 @@ client/cypress/screenshots/
 client/public/css/*-theme.css
 
 .eslintcache
+
+*key*
