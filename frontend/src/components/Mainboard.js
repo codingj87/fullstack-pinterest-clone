@@ -44,12 +44,13 @@ function Mainboard({ onSearchSubmit, images }) {
   };
   return (
     <div>
-      <Wrapper onScroll={handleScroll}>
+      {/* <Wrapper onScroll={handleScroll}> */}
+      <Wrapper>
         {images && images.length ? (
           <div>
             <Container className="mainboard_container">
               {images?.map((image) => (
-                <Pin key={image?.id} imageUrl={image?.urls?.full} />
+                <Pin key={image?.id} image={image} />
               ))}
             </Container>
             <Button
@@ -73,22 +74,22 @@ function Mainboard({ onSearchSubmit, images }) {
 
 export default Mainboard;
 
-// const Wrapper = styled.div`
-//   background-color: white;
-//   display: flex;
-//   height: 100%;
-//   width: 100%;
-//   margin-top: 15px;
-//   justify-content: center;
-// `;
-
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 50%px;
-  margin: 0 auto;
-  overflow: auto;
+  background-color: white;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin-top: 15px;
+  justify-content: center;
 `;
+
+// const Wrapper = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   height: 50%px;
+//   margin: 0 auto;
+//   overflow: auto;
+// `;
 
 const Container = styled.div`
   margin: 0 auto;

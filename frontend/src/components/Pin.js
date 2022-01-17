@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-function Pin({ imageUrl }) {
+function Pin({ image }) {
   return (
     <Wrapper>
       <Container>
-        <img alt="new balance" src={imageUrl} />
+        <img alt={image.alt_description} src={image?.urls?.full} />
       </Container>
     </Wrapper>
   );
@@ -22,8 +22,7 @@ const Container = styled.div`
   display: flex;
   alian-items: center;
   box-sizing: border-box;
-  cursor: pointer;
-  width: 236px;
+sss  width: 236px;
 
   img {
     display: flex;
@@ -31,5 +30,10 @@ const Container = styled.div`
     cursor: zoom-in;
     border-radius: 16px;
     object-fit: cover;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 `;
